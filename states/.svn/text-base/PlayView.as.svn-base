@@ -1,0 +1,25 @@
+package views {
+	
+	import flash.display.MovieClip;
+	
+	import views.playview.CamViewer;
+
+	public class PlayView extends MovieClip {
+		
+		private var camViewer:CamViewer;
+		
+		public function PlayView() {
+			
+			// camViewer will tween to x: 270, y: 30
+			camViewer = new CamViewer();
+			camViewer.x = 270;
+			camViewer.y = 30;
+			// camViewer.y = -290;
+			addChild(camViewer);
+			
+			super();
+		}
+		
+	}
+	
+}

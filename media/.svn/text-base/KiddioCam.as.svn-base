@@ -1,0 +1,46 @@
+package media {
+	
+	import flash.events.ActivityEvent;
+	import flash.media.Camera;
+	import flash.system.Security;
+	import flash.system.SecurityPanel;
+	
+	public class KiddioCam {
+		
+		private const CAMERA_WIDTH:int = 320;
+		private const CAMERA_HEIGHT:int = 240;
+		private const FPS:int = 15;
+		
+		public var cam:Camera;
+		
+		public function KiddioCam() {
+			
+			
+		}
+		
+		public function getCamera():Camera {
+			
+			// Get the camera
+			
+			cam = Camera.getCamera();
+			cam.setQuality(0,100);
+			cam.setLoopback(true);
+			cam.setMode(CAMERA_WIDTH,CAMERA_HEIGHT,FPS,true);
+			
+			Security.showSettings(SecurityPanel.CAMERA);
+			
+			cam.addEventListener(ActivityEvent.ACTIVITY, handleCamActivity);
+			
+			return cam;
+			
+		}
+		
+		private function handleCamActivity(e:ActivityEvent):void {
+			
+			trace("handling CAMERA activity");
+			
+		}
+
+	}
+	
+}

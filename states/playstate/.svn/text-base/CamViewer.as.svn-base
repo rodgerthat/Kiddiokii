@@ -1,0 +1,42 @@
+package views.playview {
+	
+	import flash.display.MovieClip;
+	import flash.media.Camera;
+	import flash.media.Video;
+	
+	import media.KiddioCam;
+
+	public class CamViewer extends MovieClip {
+		
+		private var camBorder:Webcam_viewer_border_mc;
+		
+		private var cam:KiddioCam;
+		
+		private var vid:Video;
+		
+		private const CAMERA_WIDTH:int = 320;
+		private const CAMERA_HEIGHT:int = 240;
+		
+		public function CamViewer() {
+			
+			cam = new KiddioCam.getCamera();
+			
+			// setup video object and attach camera to it
+							
+			vid = new Video(CAMERA_WIDTH, CAMERA_HEIGHT);
+			
+			vid.attachCamera(cam);
+			
+			addChild(vid);
+			
+			camBorder = new Webcam_viewer_border_mc();
+			camBorder.x = 0;
+			camBorder.y = 0;
+			addChild(camBorder);
+			
+			super();
+		}
+		
+	}
+	
+}

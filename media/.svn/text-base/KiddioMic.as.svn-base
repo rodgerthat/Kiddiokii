@@ -1,0 +1,64 @@
+package media {
+	
+	import flash.media.Microphone;
+	
+	import flash.events.ActivityEvent;
+	import flash.events.StatusEvent;
+	
+	import flash.system.Security;
+	import flash.system.SecurityPanel;
+	
+	
+	public class KiddioMic {
+		
+		private var mic:Microphone;
+		
+		public function KiddioMic() {
+			
+		}
+			
+		public function getMicrophone():Microphone {
+			
+			if (mic != null) {
+				if (mic.muted) Security.showSettings(SecurityPanel.PRIVACY);
+				
+				return mic;
+			}
+			
+			// Get the microphone
+			mic = Microphone.getMicrophone();
+			
+			if (mic != null) {
+				// Set properties if a microphone was found
+				mic.setLoopBack(true);
+				mic.rate = 44;
+				mic.gain = 25;
+				mic.setSilenceLevel(0);
+				mic.setUseEchoSuppression(true);
+				// mic.soundTransform = new SoundTransform(0); // Mute microphone from sounding on speakers
+				
+				mic.addEventListener(StatusEvent.STATUS, handleMicStatus);
+				mic.addEventListener(ActivityEvent.ACTIVITY, handleMicActivity);
+			
+			return mic;
+			}
+			
+			else {
+				// No microphone found
+				Security.showSettings(SecurityPanel.MICROPHONE);
+				return new Microphone();
+			}
+			
+		}
+			
+		private function handleMicStatus(e:StatusEvent):void {
+			
+		}
+		
+		private function handleMicActivity(e:ActivityEvent):void {
+			
+		}
+
+	}
+	
+}

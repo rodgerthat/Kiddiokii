@@ -1,0 +1,113 @@
+package views {
+	
+	import events.ViewChangeEvent;
+	
+	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
+	import flash.text.TextField;
+	import flash.text.TextFieldType;
+
+	public class ConfigView extends MovieClip {
+		
+		private var configBG:Config_bg_mc;
+		
+		private var volumeTrack:Track_mc;
+		private var volumeThumb:Thumb_mc;
+		
+		private var timeoutTrack:Track_mc;
+		private var timeoutThumb:Thumb_mc;
+		
+		private var timeoutTimeInputField:TextField;
+		
+		private var okBtn:Ok_btn_mc;
+		
+		public function ConfigView() {
+			
+			configBG = new Config_bg_mc();
+			configBG.x = 0;
+			configBG.y = 0;
+			addChild(configBG);
+			
+			volumeTrack = new Track_mc();
+			volumeTrack.x = 280;
+			volumeTrack.y = 150;
+			addChild(volumeTrack);
+			
+			volumeThumb = new Thumb_mc();
+			volumeThumb.x = 284;
+			volumeThumb.y = 150;
+			volumeThumb.buttonMode = true;
+			volumeThumb.addEventListener(MouseEvent.MOUSE_DOWN, handleVolumeThumbMouseDown);
+			volumeThumb.addEventListener(MouseEvent.MOUSE_UP, handleVolumeThumbMouseUp);
+			addChild(volumeThumb);
+			
+			timeoutTrack = new Track_mc();
+			timeoutTrack.x = 280;
+			timeoutTrack.y = 250;
+			addChild(timeoutTrack);
+			
+			timeoutThumb = new Thumb_mc();
+			timeoutThumb.x = 284;
+			timeoutThumb.y = 240;
+			timeoutThumb.buttonMode = true;
+			timeoutThumb.addEventListener(MouseEvent.MOUSE_DOWN, handleTimeoutThumbMouseDown);
+			timeoutThumb.addEventListener(MouseEvent.MOUSE_UP, handleTimeoutThumbMouseUp);
+			addChild(timeoutThumb);
+			
+			timeoutTimeInputField = new TextField();
+			timeoutTimeInputField.width = 85;
+			timeoutTimeInputField.height = 44;
+			timeoutTimeInputField.x = 384;
+			timeoutTimeInputField.y = 423;
+			timeoutTimeInputField.type = TextFieldType.INPUT;
+			timeoutTimeInputField.multiline = false;
+			timeoutTimeInputField.restrict = "0-9";
+			timeoutTimeInputField.maxChars = 2;
+			timeoutTimeInputField.addEventListener(KeyboardEvent.KEY_DOWN, handleTimeoutTimeInputFieldKeyDown);
+			
+			okBtn = new Ok_btn_mc();
+			okBtn.x = 530;
+			okBtn.y = 375;
+			okBtn.buttonMode = true;
+			okBtn.addEventListener(MouseEvent.MOUSE_DOWN, handleOkBtnMouseDown);
+			addChild(okBtn);
+			
+			
+			super();
+		}
+		
+		private function handleVolumeThumbMouseDown(e:MouseEvent):void {
+			
+		}
+		
+		private function handleVolumeThumbMouseUp(e:MouseEvent):void {
+			
+		}
+		
+		private function handleTimeoutThumbMouseDown(e:MouseEvent):void {
+			
+		}
+		
+		private function handleTimeoutThumbMouseUp(e:MouseEvent):void {
+		
+		}
+		
+		private function handleOkBtnMouseDown(e:MouseEvent):void {
+			
+			dispatchEvent(new ViewChangeEvent(ViewChangeEvent.CHANGE, "title"));
+			
+			
+		}
+		
+		private function handleTimeoutTimeInputFieldKeyDown(e:KeyboardEvent):void {
+			
+			if (e.keyCode == 13) {
+				trace("Enter key pressed");
+			}
+			
+		}
+		
+	}
+	
+}

@@ -1,0 +1,59 @@
+package views {
+	
+	import com.greensock.TweenMax;
+	import com.greensock.easing.*;
+	
+	import flash.display.MovieClip;
+	import flash.events.MouseEvent;
+	
+	import events.ViewChangeEvent;
+	
+	import views.titleview.Detector;
+	import views.titleview.KiddiokiiTitle;
+	
+	public class TitleView extends MovieClip {
+		
+		private var kiddiokiiTitle:KiddiokiiTitle;
+		private var detector:Detector;
+		private var configBtn:Config_btn;
+		
+		public function TitleView() {
+			
+			kiddiokiiTitle = new KiddiokiiTitle();
+			kiddiokiiTitle.x = 140;
+			kiddiokiiTitle.y = 100;
+			addChild(kiddiokiiTitle);
+			
+			detector = new Detector();
+			detector.x = 290;
+			detector.y = 610;
+			addChild(detector);
+			
+			TweenMax.to(detector, 2, {y:240, delay:2.2, ease:Elastic.easeOut});
+			
+			configBtn = new Config_btn();
+			configBtn.x = 7;
+			configBtn.y = 565;
+			configBtn.rotation = -45;
+			configBtn.buttonMode = true;
+			configBtn.addEventListener(MouseEvent.MOUSE_DOWN, handleConfigBtnMouseDown);
+			configBtn.addEventListener(MouseEvent.MOUSE_UP, handleConfigBtnMouseUp);
+			addChild(configBtn);
+			
+			super();
+			
+		}
+		
+		private function handleConfigBtnMouseDown(e:MouseEvent):void {
+			
+			dispatchEvent(new ViewChangeEvent(ViewChangeEvent.CHANGE, "config"));
+			
+		}
+		
+		private function handleConfigBtnMouseUp(e:MouseEvent):void {
+			
+		}
+		
+	}
+	
+}
